@@ -28,7 +28,7 @@ export class PlayList extends DDD {
         color: white;
         font-weight: bold;
         font-size: 16px;
-        background-color: blue;
+        background-color: var(--ddd-theme-default-beaverBlue);
       }
 
       .next {

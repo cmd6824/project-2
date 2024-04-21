@@ -9,23 +9,34 @@ export class MediaImage extends DDD {
 
   constructor() {
     super();
-    
+    this.imagesrc = "";
+    this.caption = "Description of the image";
+    this.description = "Longer description of the image when image is clicked on";
   }
 
   static get styles() {
     return css`
       :host {
         display: block;
+        --gallery-container-primary: var(--ddd-theme-default-skyBlue);
+        --gallery-container-secondary: var(--ddd-theme-default-original87Pink);
       }
 
       .gallery-container {
         position: relative;
+        padding: 16px;
+        background-color: var(--gallery-container-primary);
+        place-content: center;
+        text-align: center;
+        max-width: 1000px;
       }
 
       .image {
         max-width: 1000px;
         cursor: pointer;
         transition: 0.3s;
+        border: var(--ddd-border-md);
+        border-color: var(--ddd-theme-default-potentialMidnight);
       }
 
       .image:hover {
@@ -41,12 +52,7 @@ export class MediaImage extends DDD {
     <div class="gallery-container">
         <div class="slide-images">
             <div class="image">
-                <img src="https://c02.purpledshub.com/uploads/sites/48/2023/02/why-sky-blue-2db86ae.jpg?w=1029&webp=1" style="width:100%">
-                <div class="caption"></div>
-            </div>
-            <div class="image">
-                <img src="https://www.adorama.com/alc/wp-content/uploads/2017/11/shutterstock_114802408-825x465.jpg" style="width:100%">
-                <div class="caption"></div>
+                <img src="${this.imagesrc}" alt="${this.caption}" style="width:100%">
             </div>
         </div>
     </div>
@@ -55,7 +61,10 @@ export class MediaImage extends DDD {
 
   static get properties() {
     return {
-      
+      imagesrc: { type: String },
+      caption: { type: String },
+      description: { type: String },
+
     };
   }
 }

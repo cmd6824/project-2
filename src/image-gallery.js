@@ -24,7 +24,7 @@ export class ImageGallery extends DDD {
 
   render() {
     return html`
-    <div>
+    <div class="container">
       
     </div>
     `;
