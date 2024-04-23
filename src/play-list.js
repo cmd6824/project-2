@@ -10,6 +10,7 @@ export class PlayList extends DDD {
 
   constructor() {
     super();
+    this.imgArray = [];
     
   }
 
@@ -17,6 +18,10 @@ export class PlayList extends DDD {
     return css`
       :host {
         display: block;
+      }
+
+      .container {
+        place-content: center;
       }
 
       .prev, .next {
@@ -29,6 +34,7 @@ export class PlayList extends DDD {
         font-weight: bold;
         font-size: 16px;
         background-color: var(--ddd-theme-default-beaverBlue);
+        display: none;
       }
 
       .next {
@@ -45,13 +51,27 @@ export class PlayList extends DDD {
   render() {
     return html`
     <div class="container">
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
+        <a class="prev" @click="${this.previmg}">&#10094;</a>
+        <a class="next" @click="${this.nextimg}">&#10095;</a>
     </div>`;
   }
 
+  previmg() {
+
+  }
+
+  nextimg() {
+
+  }
+
+
+
+
+
   static get properties() {
     return {
+      imgArray: { type: Array },
+      
       
     };
   }

@@ -22,25 +22,37 @@ export class MediaImage extends DDD {
         --gallery-container-secondary: var(--ddd-theme-default-original87Pink);
       }
 
+      * {
+        box-sizing: border-box;
+      }
+
       .gallery-container {
         position: relative;
         padding: 16px;
-        background-color: var(--gallery-container-primary);
         place-content: center;
         text-align: center;
-        max-width: 1000px;
+        max-width: 100%;
+      }
+
+      .background {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        border: var(--ddd-border-md);
+        border-color: var(--ddd-theme-default-potentialMidnight);
+        border-radius: 8px;
+        background-color: var(--gallery-container-primary);
+      }
+
+      .background:hover {
+        transform: translate(8px, -8px);
+        box-shadow: -8px 8px #000;
+        transition: .5s;
       }
 
       .image {
-        max-width: 1000px;
+        max-width: 100%;
         cursor: pointer;
-        transition: 0.3s;
-        border: var(--ddd-border-md);
-        border-color: var(--ddd-theme-default-potentialMidnight);
-      }
-
-      .image:hover {
-        opacity: 0.7;
       }
 
 
@@ -50,11 +62,11 @@ export class MediaImage extends DDD {
   render() {
     return html`
     <div class="gallery-container">
-        <div class="slide-images">
-            <div class="image">
-                <img src="${this.imagesrc}" alt="${this.caption}" style="width:100%">
-            </div>
-        </div>
+      <div class="background">
+          <div class="image">
+              <img src="${this.imagesrc}" alt="${this.caption}" style="width:100%">
+          </div>
+      </div>
     </div>
     `;
   }
