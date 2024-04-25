@@ -1,8 +1,7 @@
-import { html, css } from 'lit';
-import { DDD } from "@lrnwebcomponents/d-d-d/d-d-d.js";
+import { LitElement, html, css } from 'lit';
 
 
-export class PlayList extends DDD {
+export class PlayList extends LitElement {
 
   static get tag() {
     return "play-list";
@@ -11,13 +10,20 @@ export class PlayList extends DDD {
   constructor() {
     super();
     this.imgArray = [];
+    this.opened = false;
     
   }
 
   static get styles() {
     return css`
       :host {
-        display: block;
+        display: none;
+      }
+
+      :host([opened]) {
+        display: flex;
+        position: absolute;
+        width: 100%;
       }
 
       .container {
@@ -33,8 +39,7 @@ export class PlayList extends DDD {
         color: white;
         font-weight: bold;
         font-size: 16px;
-        background-color: var(--ddd-theme-default-beaverBlue);
-        display: none;
+        background-color: blue;
       }
 
       .next {
@@ -71,7 +76,8 @@ export class PlayList extends DDD {
   static get properties() {
     return {
       imgArray: { type: Array },
-      
+      opened: { type: Boolean },
+
       
     };
   }
