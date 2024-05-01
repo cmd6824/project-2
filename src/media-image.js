@@ -17,13 +17,8 @@ export class MediaImage extends DDD {
   static get styles() {
     return css`
       :host {
-        display: block;
         --gallery-container-primary: var(--ddd-theme-default-skyBlue);
         --gallery-container-secondary: var(--ddd-theme-default-original87Pink);
-      }
-
-      * {
-        box-sizing: border-box;
       }
 
       .gallery-container {
@@ -31,10 +26,10 @@ export class MediaImage extends DDD {
         padding: 16px;
         place-content: center;
         text-align: center;
-        max-width: 100%;
       }
 
-      .background {
+
+      .image {
         display: flex;
         flex-direction: column;
         padding: 16px;
@@ -42,17 +37,15 @@ export class MediaImage extends DDD {
         border-color: var(--ddd-theme-default-potentialMidnight);
         border-radius: 8px;
         background-color: var(--gallery-container-primary);
+        background-size: cover;
+        cursor: pointer;
+        width: 30%;
       }
 
-      .background:hover {
+      .image:hover {
         transform: translate(8px, -8px);
         box-shadow: -8px 8px #000;
         transition: .5s;
-      }
-
-      .image {
-        max-width: 100%;
-        cursor: pointer;
       }
 
 
@@ -62,14 +55,25 @@ export class MediaImage extends DDD {
   render() {
     return html`
     <div class="gallery-container">
-      <div class="background">
           <div class="image">
-              <img src="${this.imagesrc}" alt="${this.caption}" style="width:100%">
+              <img id="slideImage" src="${this.imagesrc}" alt="${this.caption}" @click="${this.handleClick}"> 
           </div>
       </div>
     </div>
     `;
   }
+
+  handleClick() {
+    const evt = new CustomEvent("image-clicked", {
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+        detail: {
+            opened: true,
+        },
+    });
+    this.dispatchEvent(evt);
+}
 
   static get properties() {
     return {
